@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 300px;
+            height: 100px;
+            padding: 10px;
+            margin: 20px;
+            border: 1px solid pink
+        }
+        .box1 {
+            border: 1px solid antiquewhite;
+            background: linear-gradient(to right, #8360c3, #2ebf91);
+            box-sizing: border-box; /* margin까지 합쳐서 width크기를 할당 */
+        }
+        .box2 {
+            border: 1px solid #ffdde1;
+            background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+            box-sizing: content-box;
+        }
+        span {
+            border: 1px solid pink;
+        }
+        p {
+            width: 200px;
+            height: 100px;
+            border: 1px solid black
+        }
+
+        .p2 {
+            width: 50%; /* 가변크기 지정 창의 크기에 따라 Element의 크기가 바뀐다. */
+            height: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        Box1
+    </div>
+    <div class="box2">
+        Box2
+    </div>
+    <div>
+        <span>Box3</span>
+        <span>Box3-2</span>
+        <!-- <img src="../images/animal.jpeg" alt="동물의 숲또"> -->
+        <a href="4.html">4.html</a>
+    </div>
+    <p class="p1">p1</p>
+    <p class="p2">p2</p>
+</body>
+</html>

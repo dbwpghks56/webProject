@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            border: 1px solid black;
+            padding: 10px;
+            list-style: none;
+        }
+
+        li {
+            margin: 5px;
+            padding: 10px;
+        }
+        li:hover {
+            border: 1px solid gray;
+        }
+        #inside {
+            list-style-type: lower-roman;
+            list-style-position: inside;
+        }
+        div{
+            border: 1px solid gray;
+            padding: 5px;
+            margin: 5px;
+        }
+        #container {
+            /* background-color: thistle;
+            background-clip:content-box;
+            background: url(../images/animal.jpeg) no-repeat;
+            background-size: cover; */
+            background: linear-gradient(to right, #ee9ca7, #ffdde1);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <h3>list style position을 지정하지 않음</h3>
+            <ul>
+                <li>회사소개</li>
+                <li>도서</li>
+                <li>자료실</li>
+                <li>질문답변</li>
+                <li>동영상 강의</li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3>list style position : inside</h3>
+            <ul id="inside">
+                <li>회사소개</li>
+                <li>도서</li>
+                <li>자료실</li>
+                <li>질문답변</li>
+                <li>동영상 강의</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

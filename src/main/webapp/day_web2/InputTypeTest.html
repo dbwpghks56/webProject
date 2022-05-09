@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <form name="myfrm" action="inputResult.jsp">
+        1. <input type="text" value="sd" readonly autofocus> <br>
+        2. <input><br>
+        3. <input type="password" name="password" id="password" required><br>
+        <!-- required 필수로 입력해야하는 것 -->
+
+        4. <input type="search" name="search" id="search"><br>
+        5. <input type="submit" value="쿼리 전송"><br>
+        6. <input type="button" onclick="f();" value="서버전송"><br>
+        7. <input type="email" name="email" id="email"><br>
+        8. <input type="url" name="url" id="url" placeholder="www.aa.bb.com"><br>
+        9. <input type="tel" name="tel" id="tel" pattern="[01]{3}-[0-9]{3,4}-[0-9]{4}"> <br>
+        <!-- 패턴으로 정규 표현식을 줘서 예외처리를 쉽게 할 수 있다. -->
+
+        10. number는 숫자만 입력 <input type="number" name="number" id="number" min="10" max="100" step="10"> <br>
+        <!-- step 증가 버튼 눌렀을 때 증가하는 값 -->
+
+        11. <input type="range" name="range" id="range" min="1" max="10" value="3"> <br>
+        12. <input type="radio" name="radio" value="Java" checked> 자바<br>
+        <input type="radio" name="radio" value="html"> html<br>
+        <input type="radio" name="radio" value="css"> css<br>
+        13. <input type="checkbox" name="check"> Wks<br>
+        <input type="checkbox" name="check" value="Java" checked> 자바<br>
+        <input type="checkbox" name="check" value="html"> html<br>
+        <input type="checkbox" name="check" value="css"> css<br>
+        14. <input type="color" name="color" id="color"><br>
+        15. <input type="date" name="date" id="date"><br>
+        <input type="month" name="month" id="month"><br>
+        <input type="week" name="week" id="week"><br>
+        <input type="time" name="time" id="time"><br>
+        <input type="datetime-local" name="datetime-local" id="datetime-local"><br>
+        <select name="select" id="select">
+            <option value="걷기">걷기</option>
+            <option value="게임">게임</option>
+            <option value="농구">농구</option>
+        </select>
+        <select name="select" id="select" multiple="multiple">
+            <option value="걷기">걷기</option>
+            <option value="게임">게임</option>
+            <option value="농구">농구</option>
+        </select>
+        <input type="text" name="text" id="text" list="list">
+        <datalist id="list">
+            <option value="걷기">걷기</option>
+            <option value="게임">게임</option>
+            <option value="농구">농구</option>
+        </datalist><br>
+        <textarea name="text" id="text" cols="30" rows="10"></textarea>
+        <hr>
+        <input type="submit" value="서버로 전송하기"><br>
+        <input type="reset" value="다시 입력하게 하기"><br>
+        <input type="image" src="../images/muffin.png" alt=""><br>
+        <input type="button" value="이건 버튼">
+        <button>이건 태그 이름조차 버튼</button>
+        <br>
+        
+    </form>
+
+    <form oninput="result.value = parseInt(numl.value)+parseInt(numl2.value)">
+        <input type="number" name="numl">
+        <input type="number" name="numl2">
+        <output name="result" for="num"/>
+    </form><br>
+    <progress max="100" value="30" />
+
+   <script>
+       function f() {
+           alert("버튼이 눌림");
+           myfrm.action = "anchor.html";
+           myfrm.submit();
+       }
+   </script>
+</body>
+</html>

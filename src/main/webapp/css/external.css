@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+h1 {
+    color: indigo;
+    background-color: violet;
+}
+
+h2 {
+    color: red;
+    background-color: pink;
+}

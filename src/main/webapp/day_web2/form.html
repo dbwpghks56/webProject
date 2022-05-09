@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    label {
+        display: inline-block;
+        width: 80px;
+        text-align: center;
+        margin-bottom: 10px;
+        background-color: antiquewhite;
+        color: gray;
+    }
+
+</style>
+</head>
+<body>
+    <h1>로그인하기</h1>
+    <fieldset>
+        <legend>get 연습</legend>
+        <form action="logincheck2.jsp" method="get">
+            <label>아이디</label><input type="text" name="userid" value="기본값" maxlength="10"> <br>
+            <label>비밀번호</label><input type="password" name="password" id="password" value="기본값"> <br>
+            <input type="submit" value="로그인">
+        </form>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>post 연습</legend>
+        <form action="logincheck2.jsp" method="post">
+            <label>아이디</label><input type="text" name="userid2" value="123"> <br>
+            <label>비밀번호</label><input type="password" name="password2" id="password" value="123"> <br>
+            <input type="hidden" name="phone" id="password" value="01047485110">
+            <input type="submit" value="로그인">
+        </form>
+    </fieldset>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
