@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>기본 문법</h1>
+    <hr>
+    <button onclick="call();">논리 연산자</button>
+    <button onclick="call2();">논리 연산자 2</button>
+    <button onclick="call3();">식별자 재선언</button>
+    <button onclick="call4();">(Bom)window 객체의 모든 정보</button>
+    <input type="text" name="textest" id="textest" value="">
+    <button onclick="call5();">prompt 테스트</button>
+    <button onclick="call6();">confirm 테스트</button>
+    <button onclick="call7();">문자와 숫자 혼합</button>
+    <button onclick="call8();">타입 변형</button>
+    <button onclick="call9();">타입 변형(boolean)</button>
+    <br>
+    <div style="margin-top: 10px;" id="here">여기</div>
+
+    <script>
+        var obj = document.querySelector("#here");
+        let phoneObj = document.querySelector("#textest");
+
+        function call9() {
+            // 이거의 반대는 전부 True
+            obj.innerHTML = `<br> ${Boolean(0)}`;
+            obj.innerHTML += `<br> ${Boolean("")}`;
+            obj.innerHTML += `<br> ${Boolean(NaN)}`;
+            obj.innerHTML += `<br> ${Boolean(null)}`;
+            obj.innerHTML += `<br> ${Boolean(undefined)}`;
+            
+            // 자동 형변환된다.
+            obj.innerHTML += `<br> ${0 == false}`;
+            obj.innerHTML += `<br> `;
+        }
+
+        function call8() {
+            let a = '500달러';
+            let b = 1000;
+
+            obj.innerHTML = Number(a) + b; // 형변환
+            obj.innerHTML = parseInt(a) + b; // 숫자인 곳까지만 int값으로 바꿔주어서 계산이 가능하다.
+            obj.innerHTML += `<br> ${ a * String(b)}`;
+        }
+
+        function call7() {
+            obj.innerHTML = 100 + '200'; // 100200 이렇게 나온다.
+            obj.innerHTML += "<br>";
+            obj.innerHTML += '100' + '200';
+            obj.innerHTML += `<br> ${100 * '200'}`; // *는 숫자가 우선순위가 높다. 따라서 값은 20000
+            obj.innerHTML += `<br> ${'100' * '200'}`; // 20000
+        }
+
+        function call6() {
+            let result = confirm("수락하시겠습니까?");
+            obj.innerHTML = result ? "앙 수락띠" : "앙 거절띠";
+        }
+
+        function call5() {
+            let myphone = phoneObj.value;
+            if(myphone == "") {
+                //alert("값을 입력하세요.");
+                let inputData = prompt("값을 입력하세요", ""); // 뒤에 빈 것은 초기값이다. 초기값을 줘도 안 줘도 된다.
+                phoneObj.value = inputData;
+                phoneObj.focus();
+                return;
+            }
+
+            alert(myphone);
+        }
+        
+        function call() {
+            var a = 10;
+
+            // && : 앞에 것이 틀리면 굳이 뒤에 조건을 하지 않는다.
+            // || : 앞에 것이 맞으면 굳이 뒤에 조건을 하지 않는다.
+            obj.innerHTML = `${a > 20 && ++a > 30} <br> ${a < 20 || a++ > 30}`;
+            obj.innerHTML += `<br> ${a}`;
+        }
+
+        function call2() {
+            // obj.innerHTML = 30 > 20 > 10;
+            obj.innerHTML = 30 > 20 && 20 > 10;
+        }
+
+        function call3() {
+            // 이렇게 해버리면 alert가 엎어져서 alert함수를 쓸 수 없다.
+            var alert  = "식별자 재선언";
+            alert(alert);
+        }
+
+        function call4() {
+            for(let aa in window) {
+                obj.innerHTML += `<br> ${aa} ==> ${window[aa]}`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>3장 조건문</h1>
+    <h1>3장 조건문...2</h1>
+    <button id="btn1">동적 element 생성</button>
+    <button id="btn2">제목 바꾸기</button>
+    <input type="text" name="textest" id="textest" value="">
+    <button id="btn3">LAB1..양수 음수 구분</button>
+    <button id="btn4">LAB2 짝 홀 구분</button>
+    <button id="btn5">LAB3 성적 grade </button>
+    <hr>
+    <div id="here">여기</div>
+    <script>
+        let obj = document.querySelector("#here");
+        let btn = document.querySelector("#btn1");
+        let result = 0;
+
+        btn.onclick = function() {
+            let str = `
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JAVASCRIPT</li>
+                <li>JSP / SERVLET</li>
+            </ul>
+            `;
+            obj.innerHTML = str;
+        };
+
+        btn2.onclick = function() {
+            document.querySelector("h1:first-child").innerHTML = `aaaa`;
+        };
+
+        btn3.onclick = function() {
+            if(textest.value == 0) {
+                result = "0인디용.";
+            } else if(textest.value > 0) {
+                result = "양수입니당.";
+            } else if(textest.value < 0) {
+                result = "음수입니당.";
+            }
+            obj.innerHTML = result;
+        };
+
+        btn4.onclick = function() {
+            if(textest.value % 2 == 0) {
+                result = "짝수인디용."
+            } else {
+                result = "홀수인디용."
+            }
+            obj.innerHTML = result;
+        };
+
+        btn5.onclick = function() {
+            obj.innerHTML = "";
+            result = 0;
+           
+            let data = textest.value.split(",");
+            for (let index in data) {
+                result += Number(data[index]);
+            }
+            obj.innerHTML += `총점 : ${result}`;
+            let result2 = Math.ceil(result / data.length);
+            // if(result2 >= 90) {
+            //     result2 = "A";
+            // } else if (result2 >= 80 && result2 < 90) {
+            //     result2 = "B";
+            // } else if (result2 >= 70 && result2 < 80) {
+            //     result2 = "C";
+            // } else if (result2 >= 60 && result2 < 70) {
+            //     result2 = "D";
+            // }
+            obj.innerHTML += `<br> 평균 : ${result2}`;
+            // switch(true) {
+            //     case (result2 >= 90) : 
+            //         result2 = "A";
+            //         break;
+            //     case (result2 >= 80 && result2 < 90) : 
+            //         result2 = "B";
+            //         break;
+            //     case (result2 >= 70 && result2 < 80) : 
+            //         result2 = "C";
+            //         break;
+            //     case (result2 >= 60 && result2 < 70) : 
+            //         result2 = "D";
+            //         break;
+            // }
+            switch(Math.floor(result2/10)) {
+                case 10:
+                case 9:
+                    result2 = "A";
+                    break;
+                case 8:
+                    result2 = "B";
+                    break;
+                case 7:
+                    result2 = "C";
+                    break;
+                case 6:
+                    result2 = "D";
+                    break;
+            }
+            obj.innerHTML += `<br> 등급 : ${result2}`;;
+        };
+
+    </script>
+</body>
+</html>

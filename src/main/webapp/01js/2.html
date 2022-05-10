@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 변수쨩</title>
+    <script>
+        // Java Script의 변수
+        // var이 없어도 된다. 있으면 지역변수 없으면 전역 변수이다.
+        var a = 10;
+        b = 20;
+
+        function call() {
+            var c = 30; // 지역변수
+            d = 40; // 전역변수
+            alert(a + b+ c+ d);
+        }
+
+        function call2() {
+            d = "자바스크립트"
+            // c는 not defined(선언된 변수가 없다.)
+            // 1번 함수가 실행 되어야 d가 생기게 된다.
+            alert(a + b+ d);
+        }
+
+        function call3() {
+            alert(d);
+        }
+
+        function call4() {
+            var v1; // undefined 선언되었지만 값은 없다.
+            document.getElementById("here").innerHTML = "<p>" + v1 + "==>" + typeof(v1) + "</p>";
+
+            v1 = 10;
+            document.getElementById("here").innerHTML = "<p>" + v1 + "==>" + typeof(v1) + "</p>";
+
+            v1 = 3.141592;
+            document.getElementById("here").innerHTML += "<p>" + v1 + "==>" + typeof(v1) + "</p>";
+
+            v1 = "자바스크립트";
+            document.getElementById("here").innerHTML += "<p>" + v1 + "==>" + typeof(v1) + "</p>";
+
+            v1 = [1,2,3,4,5]; // 배열
+            document.getElementById("here").innerHTML += "<p>" + v1 + "==>" + typeof(v1) + "</p>";
+
+            v1 = {name : 'jj', "phone" : "010-4748-6110"}; // 객체
+            document.getElementById("here").innerHTML += "<p>" + v1["name"] + v1.name + "==>" + typeof(v1) + "</p>";
+
+            v1 = function() { // 함수
+                var a = 10;
+            };
+            document.getElementById("here").innerHTML += "<p>" + v1 + "==>" + typeof(v1) + "</p>";
+
+            // class 이름으로 접근하기
+            document.getElementsByClassName("my")[0].innerHTML += "<h2>class 이름으로 접근하기</h2>";
+
+            // ECMAScript6 에서 추가
+            document.querySelector("#here").innerHTML += "<h2>querySelector로 접근하기</h2>";
+            document.querySelector(".my").innerHTML += "<h2>쿼리셀렉터로 클래스 이름에 접근하기</h2>"
+            document.querySelector("div[name='myname']").innerHTML += "<h2>쿼리셀렉터로 속성으로 접근하기</h2>"
+
+
+            document.querySelector("#here").on("hover", function(){
+                alert("호버얌!")
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <h1>JavaScript 변수쨩</h1>
+    <hr>
+    <button onclick="call()">btn 1</button>
+    <button onclick="call2()">btn 2</button>
+    <button onclick="call3()">btn 3</button>
+    <button onclick="call4()">btn 4</button>
+    <buttn id="btn5">btn 5</buttn>
+    <hr>
+    <div style="border: 1px solid skyblue;" id="here" class="my" name="myname">여기</div>
+    <script>
+        document.querySelector("#btn5").onmouseenter = function() {
+            document.querySelector("#btn5").innerHTML += "<h2>짜잔</h2>"
+        };
+    </script>
+</body>
+</html>

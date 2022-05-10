@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 60%;
+            margin: auto;
+            border: 1px solid violet;
+            box-shadow: 3px 3px 1px purple;
+        }
+        #container h1 {
+            text-shadow: 2px 2px 1px purple;
+            color: violet;
+        }
+
+        div {
+            margin: 10px auto;
+            border: 1px solid violet;
+            padding: 10px;
+            box-shadow: 3px 3px 1px purple;
+        }
+        button {
+            background-color: violet;
+            color: white;
+            border: none;
+            padding: 3px;
+            border: 1px solid purple;
+            box-shadow: 1px 1px 0.5px purple;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        // 호이스팅 : var, function() 맨먼저 수행.
+        window.onload = function () { // 페이지 로드가 끝나면 실행하라는 뜻
+            obj = document.querySelector("#here");
+        }
+
+        function call1() {
+            var a = 10;
+            var b = "자바스크립트";
+
+            // obj.innerHTML = "a --> " + a + "<br> b --> " + b;
+            // 백틱 : eclipse 내부 브라우저에서는 지원되지 않는다.
+            obj.innerHTML = `a = ${a} <br> b = ${b}`;
+        }
+
+        function call2() {
+            // 호이스팅 : var로 선언된 변수들을 맨위로 올린다.(즉, 먼저 수행한다.)
+            obj.innerHTML = a; // undefined 
+
+            var a = 100;
+            obj.innerHTML += `<br> ${a}`;
+
+            var a = 200;
+            obj.innerHTML += `<br> ${a}`;
+        }
+        
+        function call2() {
+            obj.innerHTML += "<br>call2 함수 추가";
+        }
+
+        function call3() {
+            var num1 = 10;
+            var num2 = 20;
+
+            // let : block 안에서만 유효하다. block을 벗어나면 쓸 수 없는 변수가 된다.
+            for(let num3 = 1; num3 <= 10; num3++) { // 여기서도 var을 안 붙히면 전역변수가 된다.
+                obj.innerHTML += `<br> num 3 =  ${num3}`;
+            }
+
+            // num3 not defined -> let로 선언해 block 안에서만 유요하기 때문이다.
+            obj.innerHTML += `<br>loop 이후 <br> num 3 = ${num3}`;
+        }
+
+        function call4() {
+            obj.innerHTML = num2 + num3;
+        }
+
+        function call5() {
+            const MAX = 1000; // 상수는 const
+            
+            obj.innerHTML += `<br> ${MAX}`;
+            alert("Max is \" !!!!!!! \" " + MAX + ' "이건 괜찮..?" this ');
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Java Script 변수와 함수 사용</h1>
+        <hr>
+        <div>
+            <button onclick="call1();">변수 선언, 백틱 사용</button>
+            <button onclick="call2();">호이스팅</button>
+            <button onclick="call3();">의도하지 않은 전역 변수</button>
+            <button onclick="call4();">의도하지 않은 전역 변수 접근</button>
+            <button onclick="call5();">상수</button>
+        </div>
+        <div id="here">여기</div>
+    </div>
+</body>
+
+</html>

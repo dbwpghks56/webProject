@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="common.css" type="text/css">
+    <title>JavaScript 01</title>
+    <style>
+        /* internal css */
+        h1 {
+            background-color: violet;
+        }
+        #here {
+            border: 1px solid skyblue;
+        }
+    </style>
+    <script>
+        // alert("1. Head에 작성함");
+        console.log("1. Head에 작성함");
+    </script>
+    <script>
+        // alert("2. Head에 작성함 2");
+        console.log("2. Head에 작성함 2");
+        // 아직 here를 가진 요소가 로드가 안 된 상태에서 불러오기 때문에 적용되지 않는다.
+        document.getElementById("here").innerHTML = "<h1>KOSTA</h1>";
+        function call() {
+            // 다 로드된 상태에서 불러오기 때문에 적용된다.
+            document.getElementById("here").innerHTML += "<h1>KOSTA</h1>";
+        }
+    </script>
+    <script src="external.js"></script>
+    <script>
+        f1();
+        f2();
+    </script>
+</head>
+<body onload="call()">
+    <script>
+        // alert("3. Body 시작에 작성함 3 ... 권장 안 함");
+        console.log("3. Body 시작에 작성함 3 ... 권장 안 함");
+    </script>
+    <h1>JavaScript의 표준은 ECMAScript</h1>
+    <button onclick="alert('버튼누름');">버튼</button>
+    <div id="here">여기</div>
+    <script>
+        // alert("3. Body 끝에 작성함 3");
+        console.log("3. Body 끝에 작성함 3");
+        // 다 로드된 상태에서 불러오기 때문에 적용된다.
+        document.getElementById("here").innerHTML += "<h1>KOSTA</h1>";
+    </script>
+</body>
+</html>
