@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>LAB 3</h1>
+    <form name="form">
+        <fieldset>
+            <legend>개인정보</legend>
+            <label for="jumin1">주민번호</label>
+            <input type="text" name="jumin1" id="jumin1" size="6" maxlength="6" onkeyup="focusChange(this);" /> -
+            <input type="text" name="jumin2" id="jumin2" size="7" maxlength="7"
+                onblur="genderCheck( this.value , form )" /> <br /> <br />
+            <div id="display"> </div>
+            <label for="gender">성별</label>
+            <input type="radio" name="gender" value="man" checked="checked" disabled="disabled" />남자
+            <input type="radio" name="gender" value="woman" disabled="disabled" />여자
+
+            <input type="button" value="check" onclick="check()" />
+        </fieldset>
+    </form>
+    <script>
+        function focusChange(obj) {
+            if(obj.value.length == 6) {
+                document.querySelector("#jumin2").focus();
+            }
+        }
+        function genderCheck(jumin3, obj) {
+            let chec = document.getElementsByName("gender");
+            console.dir(obj[3]);
+            if(jumin3[0] == 1) {
+                obj[3].checked = true;
+            } else if(jumin3[0] == 2) {
+                obj[4].checked = true;
+            }
+
+        }
+        function check() {
+            // radio버튼의 값하고 주민 뒷자리 첫째 자리랑 비교
+
+        }
+    </script>
+</body>
+
+</html>

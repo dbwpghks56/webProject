@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        li:hover {
+            cursor: pointer;
+            background-color: skyblue;
+            color: white;
+            list-style: inside;
+            width: 9%;
+        }
+        li {
+            width: 8%;
+            padding: 5px;
+            margin: 5px;
+            box-shadow: 2px 2px 0.3px darkblue;
+            transition: 1s;
+        }
+
+        hr {
+            width: 15%;
+            float: left;
+        }
+        #here {
+            clear: both;
+        }
+    </style>
+    <script>
+        function call() {
+            here.innerHTML = "callback 함수1 <br>";
+            call2(function() {
+                return 100;
+            });
+            call2(function() {
+                return "자바스크립트";
+            });
+            call2(call3);
+        }
+
+        function call2(f) {
+            here.innerHTML += `${f} --> ${f()} <br>`;
+        }
+
+        function call3() {
+            let a = 10;
+            let b = 20;
+
+            return a + b;
+        }
+
+        function test() {
+            setInterval(timeDisplay, 1000); // timeDisplay() 로 부르면 지금 한 번만 부르는 거지 setInterval에 전달하는 것이 아니다.
+
+            function timeDisplay() {
+                here.innerHTML = new Date();
+            }
+        }
+
+        function test2() {
+            setInterval(() => {
+                here.innerHTML = new Date();
+            }, 1000);
+        }
+
+        function example() {
+            let result = test3();
+            here.innerHTML = result;
+            result();
+        }
+
+        function test3() {
+            let a = 10;
+            return function() {
+                here.innerHTML += `<br> ${++a}`;
+            };
+        }
+
+        function test4(param) {
+            let output = `Hello~~ ${param}`;
+            return () => {
+                return output;
+            };
+        }
+
+        function example2() {
+            let f1 = test4("Java");
+            let f2 = test4("CSS");
+            let result1 = f1();
+            let result2 = f2();
+            here.innerHTML += `<br> ${result1} <br> ${result2}`;
+        }
+
+        function test5(param) {
+            let su = param
+            return () => {
+                su++;
+                return su;
+            };
+        }
+
+        let num = test5(0);
+        let num2 = test5(100);
+
+        function example3() {
+            here.innerHTML = num();
+        }
+
+        function example4() {
+            here.innerHTML = num2();
+        }
+
+        function add2() {
+            let num3 = 0;
+            return () => {
+                num3++;
+                return num3;
+            }
+        }
+        let add = add2(); // (() => {
+        //     let num3 = 0;
+        //     return () => {
+        //         num3++;
+        //         return num3;
+        //     };
+        // })();
+
+        function example5() {
+            here.innerHTML = add();
+        }
+    </script>
+</head>
+<body>
+    <h1>함수 연습</h1>
+    <ol>
+        <li><a href="javascript:call();">callback 함수1</a></li>
+        <li><a href="1.html">link(페이지 연결)</a></li>
+        <li><a href="javascript:test();">callback 함수3</a></li>
+        <li><a href="javascript:example()">클로저(지역변수 사용 위배)</a></li>
+        <li><a href="javascript:example2()">클로저2(지역변수 사용 위배)</a></li>
+        <li><button onclick="example3();">0부터 1씩 증가</button></li>
+        <li><button onclick="example4();">100부터 1씩 증가</button></li>
+        <li><button onclick="example5();">count!</button></li>
+    </ol>
+    <hr>
+    <div id="here">여기</div>
+</body>
+</html>

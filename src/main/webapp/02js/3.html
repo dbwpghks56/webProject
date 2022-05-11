@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid violet;
+            background-color: violet;
+            color: white;
+            box-shadow: 1px 1px 0.5px indigo;
+            border-radius: 10%;
+        }
+        button:hover {
+            cursor: pointer;
+            box-shadow: -1px -1px 0.5px indigo;
+        }
+    </style>
+</head>
+<body>
+    <h1>함수 test</h1>
+    <button id="btn1">선언적 함수</button>
+    <button id="btn2">익명 함수</button>
+    <button id="btn3">내부 함수</button>
+    <button id="btn4">callback 함수</button>
+    <button id="btn5">클로져 함수</button>
+    <button id="btn6">클로져2</button>
+    <button id="btn7">클로져3</button>
+    <button id="btn8">클로져 사용되고 있다.</button>
+    <hr>
+
+</body>
+<script>
+    btn8.onclick = () => {
+        let arr = [100,99,88,77];
+
+        arr.forEach((elt, index, array) => { // elt : 요소 값, index : 요소의 위치, array : 전체 배열
+            setTimeout(() => {
+                alert(`${index} : ${elt} <== {${array}}`);
+            },0);
+        });
+    };
+
+    btn6.onclick = function() {
+        for(var i = 0; i < 3; i++) {
+            setTimeout(() => {
+                alert(i);
+            }, 0);
+        }
+    };
+    btn7.onclick = function() {
+        for(var i = 0; i < 3; i++) {
+            ((aa)=>{
+                setTimeout(()=> {
+                    alert(aa);
+                },0);
+            })(i);
+        }
+    };
+
+    let result = call2();
+    btn5.onclick = () => {
+        result();
+    };
+    function call2() {
+        let su = 0;
+        return () => {
+            su++;
+            alert(su);
+        }
+    }
+
+    btn1.onclick = function() {
+        call();
+        function call() {
+            alert("선언적 함수...function 내부에 있는 내부함수이다.");
+        }
+    };
+
+    btn2.onclick = function() {
+        (()=> {
+            alert("익명 함수...이름이 없는 함수");
+        })();
+        let f = () => {
+            alert("여러번 부르기");
+        };
+        f();
+        f();
+    };
+
+    btn3.onclick = function() {
+        btn1.onclick();
+    };
+
+    btn4.onclick = () => {
+        call(() => {
+            alert("Callback 함수...익명 함수를 파라미터(매개변수)로 전달");
+        })
+
+        call(func);
+        function func() {
+            alert("Callback 함수...선언적 함수를 파라미터(매개변수)로 전달")
+        }
+    };
+
+    function call(f) {
+        f();
+    }
+    
+</script>
+</html>

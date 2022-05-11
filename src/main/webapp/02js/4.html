@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="test">LAB 배경색 바꾸기</h1>
+
+    <script>
+        // 배경색을 가변으로 변경하기
+        let bgc = ["#97C4B8","#CCF3EE","#F9F3EE","#F9CEEE"];
+
+        let interval = setInterval(() => {
+            let colors = Math.floor(Math.random() * bgc.length);
+            document.bgColor = bgc[colors];
+        }, 1000);
+
+        window.onmousemove = () => {
+            clearInterval(interval);
+        };
+    </script>
+</body>
+</html>

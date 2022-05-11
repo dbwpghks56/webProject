@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let bgc = ["#97C4B8","#CCF3EE","#F9F3EE","#F9CEEE"];
+        window.onload = () => {
+            here.innerHTML = "자바 스크립트 내장함수 연습하기";
+
+            btn1.onclick = call;
+            btn2.onclick = call2;
+            btn3.onclick = call3;
+            btn4.onclick = call4;
+            btn5.onclick = call5;
+            btn6.onclick = call6;
+            btn7.onclick = call7;
+            btn8.onclick = call8;
+            // call();
+        };
+        window.onmousemove = () => {
+            clearInterval(interval);
+        };
+        let interval;
+        function call() {
+            interval = setInterval(() => {
+                let colors = Math.floor(Math.random() * bgc.length);
+                document.bgColor = bgc[colors];
+            }, 1000);
+        }
+        function call2() {
+            let uri = "http://localhost:8080/02js/4_내장함수.html";
+            let result = encodeURIComponent(uri);
+
+            here.innerHTML = result;
+            here.innerHTML += `<br> ${decodeURIComponent(result)}`;
+        }
+        function call3() {
+            let str = "let a = 10; let b = 20; alert(a+b);";
+            here.innerHTML = str;
+            eval(str); // 매개변수로 이동한 문자열을 javascript로 바꿔서 실행한다.
+        }
+
+        function call4() {
+            let result2 = front.value + cal.value + back.value;
+
+            result.value = eval(result2);
+        }
+
+        function call5() {
+            let a = NaN;
+            let b = Number("100달러");
+            here.innerHTML = isNaN(a) == isNaN(b);
+            here.innerHTML += `<br> ${a}`;
+            here.innerHTML += `<br> ${b}`;
+        }
+        function call6() {
+            // test(10, 20, 30);
+            test(10);
+            test2(10);
+            test3(10);
+        }
+        function test(a,b,c) {
+            // alert(!Boolean(b));
+            // 값이 안 들어왔을 때 초기값 만들기
+            if(!b) {
+                b = 200;
+            }
+            if(!c) {
+                c = 300;
+            }
+            here.innerHTML = a + b + c;
+            here.innerHTML += "<br>";
+        }
+
+        function test2(a,b,c) {
+            b = b || 100;
+            c = c || 300;
+            here.innerHTML += a + b + c;
+            here.innerHTML += "<br>";
+        }
+
+        function test3(a = 100, b = 1, c = 2) { // 값이 안 들어오면 쓰여있는 값을 초기값으로 쓴다.
+            here.innerHTML += a + b + c;
+        }
+
+        function call7() {
+            let f = function(a, b)  {
+                return a+b;
+            };
+            let f2 = (a,b) => a+b; // 익명함수의 표현을 단순화한 것
+            here.innerHTML = `${f(10, 20)} <br> `;
+            here.innerHTML += `${f2(100, 200)} <br> `;
+        }
+
+        function call8() {
+            call9(1,2,3);
+            let arr = [100,200,300,400];
+            call9(...arr); // 배열이 묶여서 배열로 가는 것이 아니라 배열이 펼쳐져서 각 요소가 보내진다.
+        }
+
+        function call9(...nums) { // 전개 연산자, 매개 변수가 몇개 혹은 뭐가 올지 모를 때 쓰는 겅
+            here.innerHTML = nums[0] + nums[1] + nums[2];
+        }
+        
+    </script>
+</head>
+<body>
+    <h1>javascript 내장함수</h1>
+    <button id="btn1">배경색 바꾸기</button>
+    <button id="btn2">encode</button>
+    <button id="btn3">eval()</button>
+    <button id="btn5">NAN</button>
+    <button id="btn6">기본 매개변수</button>
+    <button id="btn7">익명 함수 / 화살표 함수</button>
+    <button id="btn8">전개 연산자</button>
+    <hr>
+    <input type="text" name="front" id="front">
+    <select name="cal" id="cal">
+        <option value="+">더하기</option>
+        <option value="-">빼기</option>
+        <option value="*">곱하기</option>
+        <option value="/">나누기</option>
+    </select>
+    <input type="text" name="back" id="back">
+    <button id="btn4">=</button>
+    <input type="number" id="result" readonly value="">
+    <hr>
+    <div id="here">여기</div>
+</body>
+</html>
