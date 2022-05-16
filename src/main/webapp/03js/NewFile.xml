@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<customers>
+    <customer>
+        <name> 유제환 </name>
+        <age> 24 </age>
+    </customer>
+</customers>

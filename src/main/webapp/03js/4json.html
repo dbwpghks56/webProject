@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function f1() {
+        // json : javascript object notation
+        // javascript object 형태의 문자열
+        let obj = {
+            name : "유제환",
+            age : 24,
+            군필 : false,
+            toJSON : () => {
+                return {"key":"value"};
+            } // obj에 toJSON 메서드가 존재하면 재정의 된다, JSON.stringify()에 의해서 실행된다.
+        };
+
+        let str = JSON.stringify(obj); // JS -> java
+        console.dir(obj);
+        console.log(str); 
+
+        let obj2 = JSON.parse(str); // java -> JS
+        console.dir(obj2);
+    }
+
+    window.onload = () => {
+        btn1.onclick = f1;
+    };
+</script>
+<body>
+    <h1>study</h1>
+    <button id="btn1">json</button>
+    <hr>
+    <div id="here">여기</div>
+</body>
+</html>

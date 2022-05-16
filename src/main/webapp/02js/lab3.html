@@ -15,7 +15,7 @@
             <legend>개인정보</legend>
             <label for="jumin1">주민번호</label>
             <input type="text" name="jumin1" id="jumin1" size="6" maxlength="6" onkeyup="focusChange(this);" /> -
-            <input type="text" name="jumin2" id="jumin2" size="7" maxlength="7"
+            <input type="password" name="jumin2" id="jumin2" size="7" maxlength="7"
                 onblur="genderCheck( this.value , form )" /> <br /> <br />
             <div id="display"> </div>
             <label for="gender">성별</label>
@@ -28,18 +28,16 @@
     <script>
         function focusChange(obj) {
             if(obj.value.length == 6) {
-                document.querySelector("#jumin2").focus();
+                jumin2.focus();
             }
         }
         function genderCheck(jumin3, obj) {
-            let chec = document.getElementsByName("gender");
-            console.dir(obj[3]);
+            // console.dir(obj);
             if(jumin3[0] == 1) {
                 obj[3].checked = true;
             } else if(jumin3[0] == 2) {
                 obj[4].checked = true;
             }
-
         }
         function check() {
             // radio버튼의 값하고 주민 뒷자리 첫째 자리랑 비교
@@ -47,5 +45,4 @@
         }
     </script>
 </body>
-
 </html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: white;
+            background-color: skyblue;
+        }
+    </style>
+    <script>
+        let arr = [100, 99, 88];
+        let obj = {
+            name2 : "유제환",
+            age : 24,
+            "사는 곳": "서울시 금천구", // 키에 띄어쓰기나 특수문자를 쓸 거면 ""로 감싸라
+            군필여부 : false,
+            phone : ["0315356110", "01047486110"],
+            score: {
+                자바 : 100,
+                자바스크립트 : 90
+            },
+            study : () => { // 메서드 : 오브젝트 내의 함수
+                alert("함수도 가능하다.");
+            },
+            study2 : (subject) => {
+                here.innerHTML += `<br> ${this.name2}`;                
+            }
+        };
+
+        let student = [{
+            name : "유제환",
+            java : 100,
+            sql : 90,
+            javascript : 80,
+        },{
+            name : "류제환",
+            java : 98,
+            sql : 77,
+            javascript : 92
+        }];
+
+        student.push({
+            name : "김진우",
+            java : 58,
+            sql : 46,
+            javascript : 68
+        });
+        student.push({
+            name : "장이준",
+            java : 34,
+            sql : 47,
+            javascript : 65
+        });
+        student.push({
+            name : "이종호",
+            java : 12,
+            sql : 24,
+            javascript : 67
+        });
+
+        for(let val in student) {
+            student[val].getSum  = () => {
+                return student[val].java + student[val].sql + student[val].javascript;
+            };
+            student[val].getAvg = () => {
+                return student[val].getSum() / 3;
+            };
+
+            // for(let key in val) {
+            //     here.innerHTML += `<br> ${val[key]}`;
+            // }
+        }
+
+        function call2() {
+            for(let val of arr) {
+                here.innerHTML += `<br> ${val}`;
+            }
+            for(let key in obj) {
+                here.innerHTML += `<br>${key} => ${typeof(obj[key])} => ${obj[key]}`;
+
+                if(typeof(obj[key]) == "function" && key == "study2") { // 타입이 함수이면 실행해라
+                    obj[key]();
+                }
+            }
+        }
+
+        function call3() {
+            for(let key in obj) {
+                here.innerHTML += `<br> ${key} ${key in obj}`;// 오브젝트 안에 해당 속성에 값이있는지 확인 할 때도 in을 쓴다.
+            }
+        }
+
+        function call4() {
+            let obj2 = {
+                name : "유제환"
+            }
+            obj2.age = 30;
+            obj2.major = "컴공";
+            
+
+            /*for(let key in obj2) {
+                here.innerHTML += `<br> ${key} => ${obj2[key]}`;
+            }*/
+            obj2.toString = () => {
+                let str = '';
+                for(let key in obj2) {
+                    str += `<br> ${key} => ${obj2[key]}`;
+                }
+                return str;
+            };
+
+            here.innerHTML += `<br> ${obj2}`;
+        }
+
+        function call5() {
+            for(let val in student) {
+                here.innerHTML += `<br> ${student[val]["name"]}<span> : 총점 :  </span>${student[val].getSum()} 
+                <span>: 평균 : </span>${Math.floor(student[val].getAvg())}`;
+                // for(let key in val) {
+                //     here.innerHTML += `<br> ${val[key]}`;
+                // }
+            }
+        }
+
+        function call6() {
+            let arr2 = [];
+            arr2.push(new Student("유제환", 100, 90, 80));
+            arr2.push(new Student("감블러", 45, 56, 14));
+            arr2.push(new Student("김진우", 98, 67, 45));
+            arr2.push(new Student("김똘복", 76, 56, 98));
+            arr2.push(new Student("탬탬버린", 45, 67, 87));
+
+            // 생성자 함수를 이용해서 만든 객체들이 공유하는 공간 : prototype
+            Student.prototype.getSum = function() {
+                return this.java + this.sql + this.js;
+            };
+            Student.prototype.getAvg = function() {
+                return Math.floor(this.getSum() / 3);
+            };
+            Student.prototype.toString = function() {
+                return `<br> ${this.name}<span> : 총점 :  </span>${this.getSum()} 
+                <span>: 평균 : </span>${Math.floor(this.getAvg())}`;
+            };
+
+            for(let index in arr2) {
+                here.innerHTML += arr2[index];
+            }
+        }
+
+        function Student(name, java, sql, js) {
+            this.name = name;
+            this.java = java;
+            this.sql = sql;
+            this.js = js;
+        }
+
+        window.onload = () => {
+            btn1.onclick = () => {
+                here.innerHTML += `<br> ${arr[0]}`;
+                here.innerHTML += `<br> ${obj.name2}`;
+                here.innerHTML += `<br> ${obj.age}`;
+                here.innerHTML += `<br> ${obj["사는 곳"]}`; // 키가 ""로 감싸져 있으면 이렇게 가져온다.
+            };
+
+            btn2.onclick = call2;
+            btn3.onclick = call3;
+            btn4.onclick = call4;
+            btn5.onclick = call5;
+            btn6.onclick = call6;
+        };
+    </script>
+</head>
+<body>
+    <h1>object 연습 </h1>
+    <button id="btn1">object1</button>
+    <button id="btn2">object2</button>
+    <button id="btn3">object3</button>
+    <button id="btn4">object4 동적 속성 추가</button>
+    <button id="btn5">배열과 오브젝트</button>
+    <button id="btn6">생성자 함수 만들기</button>
+    <hr>
+    <div id="here">여기</div>
+</body>
+</html>
