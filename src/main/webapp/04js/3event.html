@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="3event.js"></script>
+    <script>
+        window.onload = () => {
+            let flag  = true;
+            document.querySelector("#header1").onclick = function(ee) {
+                if(flag) {
+                    this.style.backgroundColor = "lightgreen";
+                } else {
+                    this.style.backgroundColor = "skyblue";
+                }
+                
+                flag = !flag;
+                console.dir(ee);
+
+                ee = ee || window.event;
+                there.innerHTML = `위치 X : ${ee.clientX} , Y : ${ee.clientY}`;
+            };
+
+            document.querySelector("#btn1").onclick = () => {
+                document.querySelector("#header1").onclick();
+            };
+
+            btn2.onclick = () => {
+                console.dir(document.querySelector("#myfrm"));
+            };
+
+            // default event를 취소하는 방법
+            myfrm.onsubmit = () => {
+                let userids = document.querySelector("input[name='userid']").value.trim();
+                let pwd = document.querySelector("input[name='password']").value.trim();
+
+                if(userids.length == 0 || pwd.length == 0) {
+                    alert("아이디 혹은 비밀번호를 입력하세요")
+                    return false;
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+    <h1 id="header1">Header1 이벤트연결연습(고전적 방법)</h1>
+    <button id="btn1">이벤트 강제 발생</button>
+    <button id="btn2">form 정보 알아내기</button>
+    <form action="4.jsp" id="myfrm">
+        <input type="text" name="userid" value="admin">
+        <input type="password" name="password" value="1234">
+        <input type="submit" value="서버전송">
+    </form>
+    <div id="there">여기</div>
+</body>
+</html>
