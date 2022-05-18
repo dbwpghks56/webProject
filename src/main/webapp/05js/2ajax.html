@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--
+        Ajax : 비동기통신에 사용.
+    -->
+    <script>
+        window.onload = () => {
+            btn1.onclick = () => {
+                let xhr = new XMLHttpRequest(); // Ajax를 하기위한 객체이당.
+                xhr.open("get", "1event.html", false); // 뒤에 false는 동기/비동기를 설정할 때 주는 값, false면 동기
+                xhr.send(); // 이게 서버에 요청 보내기...동기 방식이면 응답할 때까지 기다린다.
+                here.innerHTML = xhr.responseText;
+            };
+
+            btn2.onclick = () => {
+                let xhr = new XMLHttpRequest(); // Ajax를 하기위한 객체이당.
+                xhr.open("get", "1event.html", true); // 뒤에 false는 동기/비동기를 설정할 때 주는 값, false면 동기
+                xhr.onreadystatechange = () => {
+                    // console.log(xhr.responseText);
+                    // console.log(response);
+                    if(xhr.readyState == 4 && xhr.status == 200) { // 4 : 모든 데이터를 받았나, 200 : 요청과 응답 성공, 500이면 오류
+                        here.innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.send(); // 이게 서버에 요청 보내기...동기 방식이면 응답할 때까지 기다린다.
+                // alert(xhr.responseText);
+                
+            };
+            btn3.onclick = () => {
+                let xhr = new XMLHttpRequest();
+                let name = document.querySelector("#username").value;
+                let phone = document.querySelector("#userphone").value;
+                xhr.onreadystatechange= () => {
+                    if(xhr.readyState == 4 && xhr.status == 200){
+                        here.innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.open("get", `1.jsp?name=${name}&phone=${phone}`); // 아무것도 안 쓰면 자동으로 true
+                xhr.send();
+                // alert("아무거나");
+            };
+            btn4.onclick = () => {
+                let xhr = new XMLHttpRequest();
+                let name = document.querySelector("#username").value;
+                let phone = document.querySelector("#userphone").value;
+                xhr.onreadystatechange= () => {
+                    if(xhr.readyState == 4 && xhr.status == 200){
+                        here.innerHTML = xhr.responseText;
+                        let obj = JSON.parse(xhr.responseText); // string으로 오기 때문에 JSON파일로 바꿔줘야한다.
+                        let output = `
+                            <ul>
+                                <li>${obj.name}</li>
+                                <li>${obj.phone}</li>
+                                <li>${obj.age}</li>
+                                <li>${obj.address}</li>
+                            </ul>
+                        `;
+                        here.innerHTML += `<hr> ${output}`;
+                    }
+                };
+                xhr.open("get", `2.jsp?name=${name}&phone=${phone}`); // 아무것도 안 쓰면 자동으로 true
+                xhr.send();
+                // alert("아무거나");
+            };
+        };
+    </script>
+</head>
+<body>
+    <h1>Ajax 연습</h1>
+    <button id="btn1">Ajax1</button>
+    <button id="btn2">Ajax2(비동기)</button>
+    <input type="text" name="username" id="username" placeholder="이름">
+    <input type="text" name="userphone" id="userphone" placeholder="전번">
+    <button id="btn3">Ajax3(jsp 요청 ... html 받기)</button>
+    <button id="btn4">Ajax4(jsp 요청 ... json 받기)</button>
+    <hr>
+    <input type="text">
+    <div id="here">여기</div>
+</body>
+</html>

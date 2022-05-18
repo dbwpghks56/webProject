@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <style>
+        h1 {
+            border: 1px solid blue;
+        }
+    </style>
+    <script src="1event.js"></script>
+    <script>
+        window.onload = () => {
+            btn2.onclick = function() {
+                alert(this.innerHTML);
+                call(); // 이건 this가 window
+            };
+            // btn2.onclick = call; 이렇게 쓰면 this가 button
+            myP.onclick = (e) => {
+                alert("p 누름");
+                console.dir(e);
+                e.stopPropagation(); // event는 부모에서 자식으로 상속되는데 이걸 쓰면 자신의 event만 실행한다.
+            }
+            myH.onclick = (e) => {
+                alert("h1 누름");
+                e.stopPropagation();
+            }
+            mydiv1.onclick = (e) => {
+                alert("div1 누름");
+            }
+            mydiv2.onclick = (e) => {
+                alert("div2 누름");
+                // e.stopPropagation();
+            }
+            // btn3.attachEvent("onclick", function(e) {
+            //     alert(this.innerHTML);
+            // });
+            btn4.addEventListener("click", function(e) { // onclick과 같은 속성이 아닌 click과 같은 event이름을 써야한다.
+                alert(this.innerHTML)
+            }, false); // 이 false는 자식에게 이벤트를 상속할지 정하는 것
+        };
+    </script>
+</head>
+<body>
+    <h1>Event 연습</h1>
+    <button id="btn1" onclick="alert('Inline Event');">1. Dom Level1 ... 인라인 이벤트</button>
+    <button id="btn2">2. Dom Level1 ... 고정방식</button>
+    <button id="btn3">3. Dom Level2 ... IE이벤드 모델</button>
+    <button id="btn4">4. Dom Level2 ... 표준이벤트 모델</button>
+    <form action="4.jsp" id="myfrm" onsubmit="return call2();">
+        <input type="text" name="userid" value="admin">
+        <input type="password" name="password" value="1234">
+        <input type="submit" value="서버전송">
+    </form>
+    <hr>
+    <div id="mydiv1" style="border: 1px solid red; padding: 10px;">
+        <div id="mydiv2" style="border: 1px solid red; padding: 10px;" >
+            <h1 id="myH">
+                캡쳐링과 버블링<p id="myP"> 이벤트가 전달된다.</p>
+            </h1>
+        </div>
+    </div>
+</body>
+</html>

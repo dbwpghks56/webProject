@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<friends>
+    <friend>
+        <name> 유제환 </name>
+        <phone> 01047486110 </phone>
+    </friend>
+    <friend>
+        <name> 김똘복 </name>
+        <phone> 68371051058 </phone>
+    </friend>
+    <friend>
+        <name> 탬탬부린 </name>
+        <phone> 30481593850 </phone>
+    </friend>
+</friends>

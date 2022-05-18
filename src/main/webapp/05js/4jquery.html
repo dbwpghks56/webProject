@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .aa {
+            background-color: #947EC3;
+        }
+        .bb {
+            background-color: #657EC3;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // $.noConflict(); $를 사용하지 않고 싶을때
+
+        $(() => {
+            $("#btfn1").click(() => {
+                let arr = ["월요일","화요일","수요일","목요일","금요일"];
+                let output = "<h2>jQuery</h2><ul>";
+                $.each(arr,(index, val) => {
+                    output += `<li> ${val} </li>`;
+                });
+
+                $("#here").html(`${output} </ul>`);
+            });
+
+            $("#btn2").click(() => {
+                let output = `${$("#here").html()} <hr>`;
+                $("li").each((index, val) => {
+                    output += `${$(val).text()} <br>`;
+                });
+                $("#here").html(output);
+            });
+            $("#btn3").click(() => {
+                $("li").each((index, val) => {
+                    if(index % 2 == 0) {
+                        $(val).addClass("aa");
+                    } else {
+                        $(val).addClass("bb");
+                    }
+                }); 
+            });
+            $("#btn4").click(() => {
+                let output = "";
+                let obj = {name : "유제환"};
+                obj.age = 24;
+                let obj2 = {address : "금천구 가산동", phone : "010-4748-6110"}
+
+                $.extend(obj,obj2,{major : "컴공"}); // object들 합치기
+                console.log(obj);
+                $("#here").html(JSON.stringify(obj));
+                $.each(obj,(key, val) => {
+                   output += ` <br> key : ${key} , val : ${val}`;
+                });
+                $("#here").html($("#here").html() + output);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>jQuery 연습</h1>
+    <button id="btn1">배열(변수를 이용한 배열)</button>
+    <button id="btn2">배열(selector를 이용한 배열)</button>
+    <button id="btn3">배열(selector)</button>
+    <button id="btn4">object</button>
+    <hr>
+    <div id="here">여기</div>
+</body>
+</html>

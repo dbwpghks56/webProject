@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        let obj = {"backgroundColor" : "lightgreen"};
+
+        $(() => {
+            // 버튼의 이벤트의 리스너를 연결
+            $("#btn1").on("click", f1);
+            $("#btn2").on("click", f2);
+            $("#btn3").on("click", f3);
+            $("#btn4").on("click", f4);
+            $("#btn5").on("click", f5);
+            $("#btn6").on("click", f6);
+            $("#btn7").on("click", f7);
+            $("#btn8").on("click", f8);
+        });
+
+        function f1() {
+            let a = $("img:first").attr("src"); // $("img").first() 로 해도 된다.
+            $("#here").html(a);
+        }
+
+        function f2() {
+            $("img:first").attr("src", "../images/git.jpg"); // 속성변경이랭
+        }
+
+        function f3() {
+            $("img").attr("src", (index) => { // 조건에 따라 바꾸고 싶다면 함수를 이용해서 바꾸어라
+                if(index == 0) {
+                    return "../images/git.jpg";
+                } else {
+                    return "../images/gugudan-2.jpg";
+                }
+            });
+
+            $("img").attr("width", (index)=> {
+                return (index +1) *100;
+            });
+        }
+
+        function f4() {
+            let obj = {
+                "src" : (index) => { 
+                            if(index == 0) {
+                                return "../images/git.jpg";
+                            } else {
+                                return "../images/gugudan-2.jpg";
+                            }
+                        },
+                "width" : (index)=> {
+                            return (index +1) *200;
+                        }
+            };
+            $("img").attr(obj); // 이렇게도 가눙
+            // $("img").attr({
+            //     "src" : (index) => { 
+            //                 if(index == 0) {
+            //                     return "../images/git.jpg";
+            //                 } else {
+            //                     return "../images/gugudan-2.jpg";
+            //                 }
+            //             },
+            //     "width" : (index)=> {
+            //                 return (index +1) *200;
+            //             }
+            // });
+        }
+
+        function f5() {
+            $("img").removeAttr("src");
+        }
+
+        function f6() {
+            $("#here").remove("#here"); // 태그까지 학살해버리기
+        }
+
+        function f7() {
+            $("#here").empty("#here"); // 안의 내용만 지우기
+        }
+
+        function f8() {
+            $("<h1></h1>").html("이..이게 맞노..?").appendTo("#here");
+            $("<img />").attr({
+                "src": "../images/petit.jpg",
+                "width" : 100
+            }).prependTo("#here"); 
+            // prependTo : 앞부분에, appendTo : 뒷부분에, insertBefore : 태그보다 전에, insertAfter : 태그보다 뒤에
+        }
+
+    </script>
+</head>
+<body>
+    <h1>jQuery 연습</h1>
+    <button id="btn1">속성 얻기</button>
+    <button id="btn2">속성 변경</button>
+    <button id="btn3">속성 변경(함수)</button>
+    <button id="btn4">속성 변경(오브젝트)</button>
+    <button id="btn5">속성 제거</button>
+    <button id="btn6">객체를 remove</button>
+    <button id="btn7">empty</button>
+    <button id="btn8">객체 생성</button>
+    <hr>
+    <div id="here">여기</div>
+    <img src="../images/animal.jpeg" alt="">
+    <img src="../images/umbrella.jpg" alt="">
+</body>
+</html>

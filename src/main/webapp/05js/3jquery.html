@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .on {
+            background-color: bisque;
+            color: white;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // window.onload = () => {
+        //     alert("aa");
+        // };
+        // window.onload = () => {
+        //     alert("bb");
+        // };
+
+        // $(대상).함수이름();
+        // $(document).ready(() => {
+        //     alert("cc");
+        // });
+        // $(document).ready(() => {
+        //     alert("dd");
+        // });
+        // $(()=>{
+        //     alert("ee");
+        // });  이렇게만 써도 위와 같은 효과이다.
+        $(() => {
+            $("#btn1").click(() => {
+                console.log(this);
+                console.log($(this));
+                $("h1").css("border", "1px solid blue");
+                $("h1").css({
+                    "backgroundColor" : "skyblue",
+                    "color" : "white"
+                });
+                $("#here").css("border", "2px solid black");
+                $(".aa").css("border", "3px dotted crimson");
+                $("input:text").css("backgroundColor", "lightgreen");
+                $("input:button").css("backgroundColor", "yellow");
+                let aa = $("option:selected").val(); // select > option:selected도 가능
+                $("#here").html(`<h1> ${aa} </h1>`);
+                // $("select > option:even").css("bakcgroundColor", "lightgreen");
+                $("p:contains('태그')").css("backgroundColor", "lightgreen");
+            });
+            $("#btn2").click(() => {
+                if($("h1").hasClass("on")) {
+                    $("h1").removeClass("on");
+                } else {
+                    $("h1").addClass("on");
+                }
+            });
+
+        });
+        
+    </script>
+</head>
+<body>
+    <button id="btn1">스똴 변경하깅</button>
+    <button id="btn2">스똴 변경하깅 on/off</button>
+    <h1>Jquery 연습</h1>
+    <h1>Jquery 연습</h1>
+    <h2>Jquery 연습</h2>
+    <div id="here">여기</div>
+    <p class="aa">p </p>
+    <p>p 태그</p>
+    <p class="aa">p </p>
+    <p class="aa">p 태그</p>
+    <p>p 태그</p>
+    <input>
+    <input type="text">
+    <input type="button" value="버튼">
+    <select name="" id="">
+        <option value="월">월</option>
+        <option value="화">화</option>
+        <option value="수">수</option>
+        <option value="목" selected>목</option>
+        <option value="금">금</option>
+    </select>
+</body>
+</html>
