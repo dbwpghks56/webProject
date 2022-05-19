@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .reverse {
+            background-color: lightcoral;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(() => {
+            $("#btn1").on("click", f1);
+            $("#btn2").on("click", f2);
+
+            let obj = {
+                "mouseenter" : function() {
+                    $(this).addClass("reverse");
+                },
+                "mouseleave" : function() {
+                    $(this).removeClass("reverse");
+                }     
+            };
+            $("h1").on(obj);
+            $("#here").on(obj);
+            $("#here2").hover(function() { // 처음 인자는 마우스가 올라갔을 때, 두번째는 떠났을 때 
+                $(this).addClass("reverse");
+            }, function() {
+                $(this).removeClass("reverse");
+            });
+            $("#myfrm").on("submit", f3);
+        });
+
+        function f1() {
+            // $("#here").html((index,html) => {
+            //     return html + "+";
+            // });
+            $("#here").html($("#here").html() + "a");
+
+            let output = `x = ${event.pageX} y = ${event.pageY}`;
+            $("#here").html(output);
+
+            event.stopPropagation();
+        }
+
+        function f2() {
+            
+        }
+
+        function f3() {
+            let id = $("#userid").val();
+            let pass= $("#userpass").val();
+
+            if(id != "admin") {
+                event.preventDefault();
+            } // default이벤트 제거
+
+        }
+    </script>
+</head>
+<body>
+    <h1>이벤트 연습</h1>
+    <button id="btn1">이벤트 연결</button>
+    <button id="btn2">이벤트 연결</button>
+    <hr>
+    <form id="myfrm" action="1.jsp" >
+        아이디<input type="text" id="userid" name="userid" value="admin">
+        비밀번호<input type="password" id="userpass" name="userpass" value="1234">
+        <input type="submit" value="서버전송">
+    </form>
+    <hr>
+    <div id="here">여기</div>
+    <div id="here2">여기</div>
+</body>
+</html>

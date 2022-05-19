@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(() => {
+            $("#btn1").click(f1);
+            $("#btn2").on("click", f2);
+            $("#btn3").on("click", f3);
+            $("#btn4").on("click", f4);
+            $("#btn5").on("click", f5);
+        });
+
+        function f1() {
+            let url = "3fade.html"
+            let xhr = new XMLHttpRequest();
+            xhr.open("get", url, true);
+            xhr.onreadystatechange = (e) => {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    here.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+        function f2() {
+            $("#here").load("3fade.html");
+        }
+        function f3() {
+            let faram = `userid=${$("#userid").val()}&userpass=${$("#userpass").val()}`;
+            $.get(`1.jsp?${faram}`, (data, status) => {
+                $("#here").html(data);
+                $("<h1></h1>").append(status).appendTo("#here");
+            });
+        }
+        function f4() {
+            let paramData = {userid : $("#userid").val(), "userpass":$("#userpass").val()};
+            $.post("1.jsp", paramData ,(data, status) => {
+                $("#here").html(data);
+                $("<h1></h1>").append(status).appendTo("#here");
+            });
+        }
+        function f5() {
+            let paramData = {userid : $("#userid").val(), "userpass":$("#userpass").val()};
+
+            $.ajax({
+                url : "1.jsp",
+                data: paramData,
+                type: "get",
+                success : (result, status, xhr) => {
+                    $("#here").html(result);
+                    $("<h1></h1>").append(status).appendTo("#here");
+                },
+                error : (xhr, status, error) => {
+                    $("<h1></h1>").append(status).appendTo("#here");
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">javascript Ajax</button>
+    <button id="btn2">jQuery Ajax(load)</button>
+    <button id="btn3">jQuery Ajax(get)</button>
+    <button id="btn4">jQuery Ajax(post)</button>
+    <button id="btn5">jQuery Ajax(ajax)</button>
+    <input type="text" id="userid" name="userid" value="admin">
+    <input type="text" id="userpass" name="userpass" value="1234">
+    <hr>
+    <div id="here">여기</div>
+</body>
+</html>
